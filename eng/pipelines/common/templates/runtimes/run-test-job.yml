@@ -11,6 +11,7 @@ parameters:
   liveLibrariesBuildConfig: ''
   crossgen2: false
   compositeBuildMode: false
+  useCodeFlowEnforcement: ''
   helixQueues: ''
   condition: true
   stagedBuild: false
@@ -111,6 +112,13 @@ jobs:
     - ${{ if ne(parameters.runtimeVariant, '') }}:
       - name: runtimeVariantArg
         value: '/p:RuntimeVariant=${{ parameters.runtimeVariant }}'
+
+    - name: codeFlowEnforcementArg
+      value: ''
+
+    - ${{ if ne(parameters.useCodeFlowEnforcement, '') }}:
+      - name: codeFlowEnforcementArg
+        value: '/p:UseCodeFlowEnforcement=${{ parameters.useCodeFlowEnforcement }}'
 
     - name: crossgenArg
       value: ''
@@ -307,7 +315,7 @@ jobs:
 
 
     # Generate test wrappers. This is the step that examines issues.targets to exclude tests.
-    - script: $(Build.SourcesDirectory)/src/tests/build$(scriptExt) buildtestwrappersonly $(logRootNameArg)Wrappers $(runtimeFlavorArgs) $(crossgenArg) $(buildConfig) $(archType) $(crossArg) $(priorityArg) $(librariesOverrideArg) $(runtimeVariantArg)
+    - script: $(Build.SourcesDirectory)/src/tests/build$(scriptExt) buildtestwrappersonly $(logRootNameArg)Wrappers $(runtimeFlavorArgs) $(crossgenArg) $(buildConfig) $(archType) $(crossArg) $(priorityArg) $(librariesOverrideArg) $(runtimeVariantArg) $(codeFlowEnforcementArg)
       displayName: Generate test wrappers
 
 
