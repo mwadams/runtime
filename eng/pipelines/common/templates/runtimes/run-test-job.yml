@@ -309,13 +309,13 @@ jobs:
     # during product build (so that we could zip up the files in their final test location
     # and directly unzip them there after download). Unfortunately the logic to copy
     # the native artifacts to the final test folders is dependent on availability of the
-    # managed test artifacts.
-    - script: $(Build.SourcesDirectory)/src/tests/build$(scriptExt) copynativeonly $(logRootNameArg)Native $(testTreeFilterArg) $(runtimeFlavorArgs) $(crossgenArg) $(buildConfig) $(archType) $(priorityArg) $(librariesOverrideArg)
+    # managed test artifacts. This step also generates the final test execution scripts.
+    - script: $(Build.SourcesDirectory)/src/tests/build$(scriptExt) copynativeonly $(logRootNameArg)Native $(testTreeFilterArg) $(runtimeFlavorArgs) $(crossgenArg) $(buildConfig) $(archType) $(priorityArg) $(librariesOverrideArg) $(codeFlowEnforcementArg)
       displayName: Copy native test components to test output folder
 
 
     # Generate test wrappers. This is the step that examines issues.targets to exclude tests.
-    - script: $(Build.SourcesDirectory)/src/tests/build$(scriptExt) buildtestwrappersonly $(logRootNameArg)Wrappers $(runtimeFlavorArgs) $(crossgenArg) $(buildConfig) $(archType) $(crossArg) $(priorityArg) $(librariesOverrideArg) $(runtimeVariantArg) $(codeFlowEnforcementArg)
+    - script: $(Build.SourcesDirectory)/src/tests/build$(scriptExt) buildtestwrappersonly $(logRootNameArg)Wrappers $(runtimeFlavorArgs) $(crossgenArg) $(buildConfig) $(archType) $(crossArg) $(priorityArg) $(librariesOverrideArg) $(runtimeVariantArg)
       displayName: Generate test wrappers
 
 
