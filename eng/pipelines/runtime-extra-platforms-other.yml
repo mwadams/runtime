@@ -118,7 +118,7 @@ jobs:
     jobParameters:
       testGroup: innerloop
       isSingleFile: true
-      nameSuffix: NativeAOT_Libs_Passing
+      nameSuffix: NativeAOT_Checked_Libs_Passing
       buildArgs: -s clr.aot+libs+libs.tests -rc Checked -c $(_BuildConfig) /p:TestNativeAot=true /p:ArchiveTests=true
       timeoutInMinutes: 240
       # extra steps, run tests
@@ -147,7 +147,7 @@ jobs:
     jobParameters:
       testGroup: innerloop
       isSingleFile: true
-      nameSuffix: NativeAOT_Libs_Passing
+      nameSuffix: NativeAOT_Checked_Libs_Passing
       buildArgs: -s clr.aot+libs+libs.tests -rc Checked -c $(_BuildConfig) /p:TestNativeAot=true /p:ArchiveTests=true
       timeoutInMinutes: 240
       # extra steps, run tests
