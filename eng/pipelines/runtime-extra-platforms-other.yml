@@ -120,7 +120,7 @@ jobs:
       isSingleFile: true
       nameSuffix: NativeAOT_Checked_Libs_Passing
       buildArgs: -s clr.aot+libs+libs.tests -rc Checked -c $(_BuildConfig) /p:TestNativeAot=true /p:ArchiveTests=true
-      timeoutInMinutes: 240
+      timeoutInMinutes: 360
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -149,7 +149,7 @@ jobs:
       isSingleFile: true
       nameSuffix: NativeAOT_Checked_Libs_Passing
       buildArgs: -s clr.aot+libs+libs.tests -rc Checked -c $(_BuildConfig) /p:TestNativeAot=true /p:ArchiveTests=true
-      timeoutInMinutes: 240
+      timeoutInMinutes: 360
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
